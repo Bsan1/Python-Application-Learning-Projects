@@ -7,5 +7,5 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# This archive duplicates Assignment 3, including its local virtual environment.
-Assignment3/CNG445Ass.zip
+# This archive duplicates the portal source, including its local virtual environment.
+Local-Event-Portal-Example/CNG445Ass.zip
