@@ -1,24 +1,34 @@
-# CNG445 Software Development with Scripting Languages
+# Python Scripting Examples
 
-Three Python projects covering data processing, network programming, desktop interfaces, and web development.
+Three Python projects covering log analysis, TCP networking, desktop interfaces, and Flask web development.
 
-## Task Management Analyser
+## Task management analyser example
 
-A command-line program that reads task-management logs and turns them into `Member`, `Manager`, `Team`, and `Task` objects. Regular expressions handle the input format. The program can find managers by expertise, list urgent tasks, compare team workloads, identify busy team members, and filter tasks by property.
+The command-line program parses members, managers, teams, and tasks from a text log. It can list urgent tasks, compare team workloads, find managers by expertise, and filter tasks by property.
 
-Built with Python, regular expressions, file processing, object-oriented programming, and Matplotlib.
+```text
+Select report: Urgent Tasks
+[B1] API Development - assigned to jdoe
+```
 
-## Bookstore client-server application
+## Bookstore client-server example
 
-A TCP bookstore system with separate cashier and manager interfaces built in Tkinter. Cashiers can authenticate and create transactions. Managers can add books, update stock, and request sales reports. The server keeps inventory, users, discount codes, and transaction history in text files and applies single-use discounts during checkout.
+A TCP server handles authentication, inventory, discounts, transactions, and sales reports. Tkinter clients provide separate cashier and manager interfaces.
 
-Built with Python sockets, Tkinter, a message-based client-server protocol, and file-backed storage.
+```text
+Client: transaction;2025-11-15 10:30:00;;john;1003-2
+Server: transactionconfirmation;19.50
+```
 
-## Local Event Advertisement Portal
+## Local event portal example
 
-A Flask and SQLite website for publishing campus events. Visitors can search and view events, while registered users can sign in, manage their profiles, announce events, and remove their own listings. Admin users can manage societies. JavaScript validates forms in the browser, and Flask handles authentication, sessions, database access, and server-side rendering.
+A Flask and SQLite website where visitors search campus events and registered users publish their own events. Sessions protect user pages, while admin accounts manage societies.
 
-Built with Flask, SQLite, HTML, CSS, JavaScript, and Jinja templates.
+```text
+Visitor -> Search events -> View details
+User    -> Login -> Announce event -> Manage profile
+Admin   -> Login -> Manage societies
+```
 
 ## Author
 
