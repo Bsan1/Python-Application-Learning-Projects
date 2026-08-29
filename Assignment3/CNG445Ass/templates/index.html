@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home Page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="topnav">
+  <a href="/index">Home Page</a>
+  {% if username %}
+    {% if isAdmin == 1 %}
+      <a href="/societies">Manage Societies</a>
+    {% endif %}
+    <a href="/profile">My Profile</a>
+    <a href="/logout">Logout</a>
+  {% else %}
+    <a href="/register">Register</a>
+  {% endif %}
+</div>
+
+<div class="content">
+  <div class="form-card" style="margin-bottom: 20px;">
+    <h3>Search Events</h3>
+    <form action="/index" method="GET">
+      <div class="form-row inline">
+        <input type="text" name="keyword" placeholder="Keyword..." value="{{ keyword if keyword else '' }}">
+        
+        <select name="society">
+          <option value="all">All Societies</option>
+          {% for s in societies %}
+            <option value="{{ s[0] }}" {% if selected_soc|int == s[0] %}selected{% endif %}>
+              {{ s[1] }}
+            </option>
+          {% endfor %}
+        </select>
+        
+        <button type="submit" class="btn">Search</button>
+        {% if keyword %}
+          <a href="/index" class="btn danger" style="text-decoration:none; padding:10px;">Clear</a>
+        {% endif %}
+      </div>
+    </form>
+  </div>
+
+  <hr>
+
+  {% if results is not none %}
+    
+    <h2>Search Results for "{{ keyword }}"</h2>
+
+    {% if search_mode == 'all' %}
+       {% for soc_name, items in results.items() %}
+         <h3 style="background:#eee; padding:5px;">{{ soc_name }}</h3>
+         {% if items|length > 0 %}
+           <table class="data-table">
+             <thead><tr><th>Title</th><th>Description</th><th>Action</th></tr></thead>
+             <tbody>
+               {% for item in items %}
+                 <tr>
+                   <td>{{ item[1] }}</td> <td>{{ item[2] }}</td> <td><a href="/event_details/{{ item[0] }}">See More</a></td>
+                 </tr>
+               {% endfor %}
+             </tbody>
+           </table>
+         {% else %}
+           <p>No events.</p>
+         {% endif %}
+       {% endfor %}
+
+    {% else %}
+       {% if results|length > 0 %}
+         <table class="data-table">
+           <thead><tr><th>Title</th><th>Description</th><th>Action</th></tr></thead>
+           <tbody>
+             {% for item in results %}
+               <tr>
+                 <td>{{ item[1] }}</td>
+                 <td>{{ item[2] }}</td>
+                 <td><a href="/event_details/{{ item[0] }}">See More</a></td>
+               </tr>
+             {% endfor %}
+           </tbody>
+         </table>
+       {% else %}
+         <p>No events found.</p>
+       {% endif %}
+    {% endif %}
+
+  {% else %}
+    <h2>Local Event Advertisement Portal</h2>
+    {% if msg %}
+      <p class="{% if 'successfully' in msg or 'added' in msg %}ok{% else %}error{% endif %}">{{ msg }}</p>
+    {% endif %}
+
+    {% if username %}
+      <p>Welcome, <b>{{ username }}</b>!</p>
+      
+      {% if isAdmin == 0 %}
+        <hr>
+        <h2>Add Event</h2>
+        {% if societies|length == 0 %}
+           <p class="error">No societies found.</p>
+        {% else %}
+           <form class="form-card" name="eventForm" action="/events" method="POST" onsubmit="return validateEventForm();">
+             <input type="hidden" name="action_type" value="add_event">
+             <div class="form-row"><label>Event Name</label><input type="text" name="event_name" required></div>
+             <div class="form-row"><label>Time &amp; Date</label><input type="date" name="event_timeDate" required></div>
+             <div class="form-row"><label>Societies</label>
+               <div class="checkbox-group">
+                 {% for s in societies %}
+                   <label class="chk"><input type="checkbox" name="societies" value="{{ s[0] }}"> {{ s[1] }}</label>
+                 {% endfor %}
+               </div>
+             </div>
+             <div class="form-row"><label>Description</label><input type="text" name="description" required></div>
+             <div class="form-row"><label>Entry Price</label>
+               <div class="inline">
+                 <label><input type="radio" name="fee_type" value="free" checked onclick="toggleFee()"> Free</label>
+                 <label><input type="radio" name="fee_type" value="paid" onclick="toggleFee()"> Paid</label>
+               </div>
+             </div>
+             <div class="form-row" id="feeInput" style="display:none;">
+               <label>Amount</label><input type="text" name="entryPrice" id="entryPrice">
+             </div>
+             <button type="submit" class="btn">Submit</button>
+           </form>
+        {% endif %}
+
+        <hr>
+        <h2>Previously Announced Events</h2>
+        <table class="data-table">
+          <thead><tr><th>Name</th><th>Time</th><th>Societies</th><th>Description</th><th>Fee</th><th>Action</th></tr></thead>
+          <tbody>
+            {% if events and events|length > 0 %}
+              {% for e in events %}
+                <tr>
+                  <td>{{ e[1] }}</td>
+                  <td>{{ e[2] }}</td>
+                  <td>{{ e[5] }}</td>
+                  <td>{{ e[3] }}</td>
+                  <td>{% if e[4]>0 %}{{ e[4] }}{% else %}Free{% endif %}</td>
+                  <td>
+                    <form action="/events" method="POST" onsubmit="return confirm('Delete?');">
+                      <input type="hidden" name="action_type" value="delete_event">
+                      <input type="hidden" name="event_id" value="{{ e[0] }}">
+                      <button type="submit" class="btn danger">Delete</button>
+                    </form>
+                  </td>
+                </tr>
+              {% endfor %}
+            {% else %}
+              <tr><td colspan="6">No events found.</td></tr>
+            {% endif %}
+          </tbody>
+        </table>
+
+      {% endif %}
+
+    {% else %}
+      <h3>Login</h3>
+      <form class="form-card" action="/login" method="POST">
+        <div class="form-row"><label>Username</label><input type="text" name="username" required></div>
+        <div class="form-row"><label>Password</label><input type="password" name="password" required></div>
+        <button class="btn" type="submit">Login</button>
+      </form>
+      {% if error %}<p class="error">{{ error }}</p>{% endif %}
+    {% endif %}
+
+  {% endif %}
+</div>
+
+<div class="footer"><p>Event Portal</p></div>
+<script src="/validation.js"></script>
+</body>
+</html>

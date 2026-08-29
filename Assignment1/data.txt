@@ -1,0 +1,27 @@
+John Smith <!jsmith>
+Joe Bloggs <jbloggs>
+Jane Doe <!jdoe>
+Janie Roe <jroe>
+Richard Roe <!rroe>
+Mary Major <mmajor>
+James Jones <!jjones>
+Useless Ulysses <uulysses>
+Frontend <fe> -> jsmith,jbloggs
+Backend <be> -> jdoe,jroe
+DevOps <dev> -> rroe,mmajor
+DBAdmin <dba> -> jjones
+MoralSupport <ms> -> uulysses
+[B1] API Development @jroe #estimatedhours:20 #priority:high #backend #urgent
+[B2] Pentest API endpoints @jdoe #estimatedhours:8 #priority:high #testing
+[F1] Design Mockups @jsmith #estimatedhours:12 #priority:medium #design
+[F2] User Testing @jbloggs #estimatedhours:8
+[F3] Implement style guidelines @jsmith #estimatedhours:3 #priority:low #design
+[D1] Database schema design @jjones #estimatedhours:15 #priority:high #database
+[D2] Optimize queries @jjones #estimatedhours:10 #database #testing
+[V1] Set up CICD pipeline @rroe #estimatedhours:18 #complexity:high #devops
+[V2] Monitor server performance @mmajor #estimatedhours:5 #priority:medium #devops
+# THIS AND THE FOLLOWING LINES ARE INVALID AND SHOULD BE IGNORED:
+[X1] Invalid Task-> @unknown
+Joe Shmoe <!jshmoe> #yoe:3 #
+[ZZ] Missing Assignee #estimatedhours:4 #priority:low
+Missing Code @jsmith #estimatedhours:6

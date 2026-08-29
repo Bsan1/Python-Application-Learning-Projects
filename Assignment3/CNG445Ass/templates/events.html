@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Events</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="static/mystyle.css"> 
+    <script src="static/validation.js"\></script>
+</head>
+<body>
+<h1>Add Event</h1>
+<form name= "eventForm" action="/add_event" method="POST" onsubmit="return validateEventForm">
+    <input type="hidden" name="action_type" value="add_event">
+    <p>Event Name: <input type="text" name="event_name" required/></p>
+    <p>Time & Date: <input type="date" name="event_timeDate" required /></p>
+    <p>Societies Involved (Select at least one):
+        {% for society in societies %}
+                <input type="checkbox" name="societies" value="{{ society.societyID }}"> {{ society.name }}<br>
+        {% endfor %} 
+    </p>
+    <p>Description: <input type="text" name="description" required/></p>
+    <p>Entry Price: <input type="radio" name="fee_type" value="Free"\>Free
+    <input type="radio" name="fee_type" value="Paid"\>Paid</p>
+
+    <div id="feeInput">
+    <p>Amount: <input type="text" name="entryPrice" value="priceField"/></p>
+    </div>
+    <button type="submit">Submit</button> 
+</form>
+
+<hr>
+
+        <h2>Previously Announced Events</h2>
+        
+        <table border="1" width="100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Time & Date</th>
+                    <th>Societies</th>
+                    <th>Description</th>
+                    <th>Fee</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if events %}
+                    {% for event in events %}
+                    <tr>
+                        <td>{{ event.name }}</td>
+                        <td>{{ event.timeDate }}</td>
+                        <td>{{ event.soc_names }}</td>
+                        <td>{{ event.description }}</td>
+                        <td>
+                            {% if event.entryPrice and event.entryPrice > 0 %}
+                                {{ event.entryPrice }}
+                            {% else %}
+                                Free
+                            {% endif %}
+                        </td>
+                        <td>
+                            <form action="/manage_events" method="POST" onsubmit="return confirm('Delete this event?');">
+                                <input type="hidden" name="action_type" value="delete_event">
+                                <input type="hidden" name="event_id" value="{{ event.eventID }}">
+                                
+                                <button type="submit" style="background-color: #ffcccc;">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr><td colspan="6">No events found.</td></tr>
+                {% endif %}
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+</body>

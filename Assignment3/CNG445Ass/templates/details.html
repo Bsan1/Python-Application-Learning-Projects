@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Event Details</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="topnav">
+  <a href="/index">Home Page</a>
+</div>
+
+<div class="content">
+  <h2>Event Details</h2>
+  
+  <table class="data-table" style="max-width: 600px; margin: auto;">
+    <tr>
+      <th width="30%">Name</th>
+      <td>{{ event[0] }}</td>
+    </tr>
+    <tr>
+      <th>Time &amp; Date</th>
+      <td>{{ event[1] }}</td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td>{{ event[2] }}</td>
+    </tr>
+    <tr>
+      <th>Entry Fee</th>
+      <td>{% if event[3] > 0 %}{{ event[3] }}{% else %}Free{% endif %}</td>
+    </tr>
+    <tr>
+      <th>Societies</th>
+      <td>{{ event[4] }}</td>
+    </tr>
+  </table>
+
+  <br>
+  <div style="text-align:center;">
+    <a href="/index" class="btn">Back to Home</a>
+  </div>
+</div>
+
+<div class="footer"><p>Event Portal</p></div>
+
+</body>
+</html>

@@ -1,0 +1,11 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.idea/
+.vs/
+.DS_Store
+Thumbs.db
+
+# This archive duplicates Assignment 3, including its local virtual environment.
+Assignment3/CNG445Ass.zip

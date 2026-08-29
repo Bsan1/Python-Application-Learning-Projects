@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>My Profile</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+<div class="topnav">
+  <a href="/index">Home Page</a>
+
+  {% if username %}
+    {% if isAdmin == 1 %}
+      <a href="/societies">Manage Societies</a>
+    {% endif %}
+    <a href="/profile">My Profile</a>
+    <a href="/logout">Logout</a>
+  {% else %}
+    <a href="/register">Register</a>
+  {% endif %}
+</div>
+
+<div class="content">
+  <h2>My Profile</h2>
+
+  {% if message %}
+    <p><b>{{ message }}</b></p>
+  {% endif %}
+
+  <form name="profileForm" action="/profile" method="POST" onsubmit="return validateProfile()">
+
+    <p>Username (not editable):
+      <input type="text" name="username" value="{{ profile[0] }}" readonly>
+    </p>
+
+    <p>New Password (leave empty to keep current password):
+      <input type="password" name="password" id="profilePassword">
+    </p>
+
+    <p>Full Name:
+      <input type="text" name="name" id="profileName" value="{{ profile[1] }}">
+    </p>
+
+    <p>Email:
+      <input type="text" name="email" id="profileEmail" value="{{ profile[2] }}">
+    </p>
+
+    <p><input type="submit" value="Update Profile"></p>
+  </form>
+</div>
+
+<div class="footer">
+  <p>Footer</p>
+</div>
+
+<script src="/validation.js"></script>
+</body>
+</html>

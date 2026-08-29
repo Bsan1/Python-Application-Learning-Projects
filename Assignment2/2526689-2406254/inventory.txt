@@ -1,0 +1,16 @@
+1001;The Name of the Wind;Patrick Rothfuss;Fantasy;12.99;7
+1002;Sapiens: A Brief History of Humankind;Yuval Noah Harari;History;18.50;8
+1003;Gone Girl;Gillian Flynn;Mystery;9.75;25
+1004;The Hitchhiker's Guide to the Galaxy;Douglas Adams;Science Fiction;10.00;4
+1005;The Secret Garden;Frances Hodgson Burnett;Young Adult;7.25;11
+1006;Atomic Habits;James Clear;Self-Help;15.99;6
+1007;The Expanse: Leviathan Wakes;James S. A. Corey;Science Fiction;14.50;18
+1008;Educated: A Memoir;Tara Westover;Biography;17.99;3
+1009;A Storm of Swords;George R. R. Martin;Fantasy;11.25;22
+1011;Where the Crawdads Sing;Delia Owens;Mystery;10.50;5
+1013;The Hunger Games;Suzanne Collins;Young Adult;8.99;14
+1014;Thinking, Fast and Slow;Daniel Kahneman;Psychology;20.00;7
+1015;Good Omens;Terry Pratchett and Neil Gaiman;Fantasy;12.00;16
+1016;The Vanishing Half;Brit Bennett;Contemporary;11.50;0
+1111;asd;sad;asd;12.00;13
+1212;asdsadasdads;sadsad;asdasd;10.00;0

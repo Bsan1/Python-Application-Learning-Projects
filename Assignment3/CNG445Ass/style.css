@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+}
+
+/* Design Template (topnav/content/footer) */
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+
+.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.content {
+  background-color: #ddd;
+  padding: 16px;
+  min-height: 70vh;
+}
+
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px 16px;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+}
+
+/* Extra styling so forms/tables don’t look “raw” */
+.section {
+  margin-top: 10px;
+}
+
+.form-card {
+  background: white;
+  padding: 14px;
+  border: 1px solid #bbb;
+  max-width: 700px;
+}
+
+.form-row {
+  margin-bottom: 12px;
+}
+
+.form-row label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
+
+.form-row input[type="text"],
+.form-row input[type="password"],
+.form-row input[type="date"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #999;
+}
+
+.inline {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.checkbox-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px;
+}
+
+.chk {
+  font-weight: normal;
+}
+
+.btn {
+  padding: 8px 14px;
+  border: 1px solid #444;
+  background: #333;
+  color: white;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: #111;
+}
+
+.btn.danger {
+  background: #b00020;
+  border-color: #7a0016;
+}
+
+.btn.danger:hover {
+  background: #7a0016;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border: 1px solid #bbb;
+}
+
+.data-table th,
+.data-table td {
+  border: 1px solid #bbb;
+  padding: 8px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table th {
+  background: #f1f1f1;
+}
